@@ -1,0 +1,7 @@
+
+# dependencies
+/node_modules
+
+# static files
+/hlsfiles
+/opAd
