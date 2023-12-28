@@ -7,9 +7,9 @@ const VideoPlayer: React.FC = () => {
   const [playedSeconds, setPlayedSeconds] = useState(0);
   const [adPlayed, setAdPlayed] = useState(false);
 
-  const handleProgress = (progress) => {
+  const handleProgress = (progress: any) => {
     setPlayedSeconds(progress.playedSeconds);
-    if (progress.playedSeconds >= 180 && !isAdPlaying && !adPlayed) {
+    if (playedSeconds >= 180 && !isAdPlaying && !adPlayed) {
       setIsAdPlaying(true);
       setAdPlayed(true);
     }
@@ -25,7 +25,7 @@ const VideoPlayer: React.FC = () => {
         }}
       >
         <ReactPlayer
-          url="http://localhost:5000/hlsfiles/output_1080.m3u8"
+          url="http://localhost:5000/public/jujutsukaisen0/output.m3u8"
           playing={!isAdPlaying}
           controls
           onProgress={handleProgress}
@@ -33,10 +33,11 @@ const VideoPlayer: React.FC = () => {
           height="100%"
         />
       </div>
-      <div style={{ width: "100%", height: "100vh" }}>
-        {isAdPlaying && (
+
+      {isAdPlaying && (
+        <div style={{ width: "100%", height: "100vh" }}>
           <ReactPlayer
-            url="http://localhost:5000/opAd/output.m3u8"
+            url="http://localhost:5000/public/opAd/output.m3u8"
             playing={isAdPlaying}
             onEnded={() => {
               setIsAdPlaying(false);
@@ -44,8 +45,8 @@ const VideoPlayer: React.FC = () => {
             width="100%"
             height="100%"
           />
-        )}
-      </div>
+        </div>
+      )}
     </div>
   );
 };
